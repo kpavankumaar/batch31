@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>git hub</title>
+</head>
+<body>
+	<h3>Installation of GIT</h3>
+	Basics
+		1. install git from a website 
+		2. use terminal for mac and create a folder 
+		3. go to newly Created Directory and do GIT Init 
+		4. echo 'hello world ' readme.txt
+		5. this is default editor . 
+			to add text press "i" 
+			press escape "esc" to come out of insert mode 
+			write ":wq" then press enter 
+		6. to add the file to master use 'git add readme.txt'
+		Now check the git log you will see what is added to the master 
+
+		7. at this stage we have readme.txt file staged 
+		  if i want to edit the content in the file use "vim readme.txt"
+		8. again press "i" to insert the content and use "esc" followed by ":wq"
+		9. git add -u to add changes to staged stage.
+		10. next type git log to get information about all commits 
+		11. type git diff commit1..commit2 will show you the difference in the commited information - shorthand "git diff HEAD~1" will show latest changes in commit made .
+		12. touch file1.txt. file2.txt
+		13. git add -u will move the changes to staged state 
+		14. git add -A will add all untracked files to staged state 
+		15. rm file2.txt will delete the file from local machine
+
+		16. git add -u - will stage the deletion for the next commit 
+
+		17. mv file1.txt new_file_name.txt  will rename file1.txt to new_file_name.txt  - terminal will not show it as renamed but it will show that it has deleted file1.txt and created untracked new_file_name.txt 
+
+		18. git add -A will stage  new_file_name.txt and understands that file1.txt is renamed to new_file_name.txt  . Be carefull with this statement git add -A will stage all the files 
+
+
+		19. to unstage the files git reset HEAD sudeep sameera arbaz
+			commit the changes using 
+			git commit -m "message for commiting"	
+			git reset -- hard HEAD~1 - Will remove last commit you have made
+			git reset -- hard HEAD~2 - will remove last two commits you have made 
+
+		/********************/
+
+		1. touch temp1.txt temp2.txt 
+		2. you can clean the files by using 
+			git clean -n -> will ask for removing the temp1.txt temp2.txt 
+			git clean -f -> will remove the temp1.txt temp2.txt
+		3. git remote -v -> will check if they have a local repository and is local repository linked with external repositories or not 
+			if we didnot add any repositories then it will not return any value 
+		4. git remote add origin https://github.com/kpavankumaar/gitfundamentals.git
+		this can be used to examine the changes made to project 
+		5. need to complete merging
+
+		/*********** git push*********/
+		<!-- /*********** git push*********/ -->
+		Error Message 
+
+		pavans-MacBook-Pro:digital pavankumarkondaparthy$ git push origin master 
+		git@github.com: Permission denied (publickey).
+		fatal: Could not read from remote repository.
+
+		Solution: - 
+		SSH Key generation
+
+		1. ssh-keygen -t rsa -b 4096 -C "k.pavanlumaar@gmail.com" 
+		 this will generate key 
+		
+		list of questions asked by terminal 
+
+		a.Enter a file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
+		b.Enter passphrase (empty for no passphrase): [Type a passphrase]
+		c.Enter same passphrase again: [Type passphrase again]
+		for above pointers a,b,c you can leave it empty and press enter 
+
+		generating PID - process id . This id represents single thread and at any given moment will allow one connection
+
+		2. eval "$(ssh-agent -s)" 
+		Agent pid 59566
+
+		3.ssh-add -K ~/.ssh/id_rsa 
+		to add ssh key 
+
+		pbcopy is in image format to convert this into pbcopy to text format use the following step 
+
+		pbcopy < ~/.ssh/id_rsa.pub 
+
+		--- to copy public key
+
+		goto www.github.com --> login --> goto settings --> SSH and GPG keys --> copy the SSH Key --> ADD SSH Key
+
+		push your changes with  git push -u origin master
+
+		********************** visualizing branches ********************
+		following statement will help you visualize a branch 
+
+		git log --graph --oneline 
+
+		next statement will help you visualize all branches 
+		git log --graph --oneline --all
+
+		giving alias name to graph online all 
+		git config --global alias.lga "log --graph --oneline --all --decorate"
+
+		-> cat ~/.gitconfig
+		will display the value of lga = log --graph --oneline --all --decorate
+		********************** creating tags **********************
+		creating a tag 
+		git tag v1.0 
+
+		viewing a tag 
+		git tag 
+
+		tag v1.0 will always point the same commit number;
+
+		so far unsigned tags 
+
+		we can add message with a tag 
+		git tag -a v1.0_with_message
+
+		if you type "git tag " it will show two tags 
+
+		create a tag with signature 
+
+		git tag -s v1.0_signed
+		<!-- bugs related to signed tags 
+			pavans-MacBook-Pro:digital pavankumarkondaparthy$ git tag -s v1.0_signed 
+			fatal: cannot run gpg: No such file or directory
+			error: gpg failed to sign the data
+			error: unable to sign the tag
+		 -->
+		by default git push will not push git tags , so use 
+		git push --tags
+
+		now if select tag in github.com then you will see code base at the time of creating a tab
+
+		<!-- creating new branch , rename branch , checkout new branch,   -->
+		1. creating new branch 
+		git branch feature1
+
+		2. checkout branch - all commits are pushed to this repository 
+		git checkout feature1 
+
+		3. rename branch - m means move branch to new name 
+		git branch -m feature1 bug1234
+
+		4. delete branch 
+		git branch -d bug1234
+			a. git prevents me from deleting branch as it is not merged with master
+		5. delete Branch by force even if it is not merged with master 
+		git branch -D bug1234
+
+		6. Creating a branch and checkout the branch instantly 
+		git checkout -b feature2
+
+
+
+
+
+
+</body>
+</html>
